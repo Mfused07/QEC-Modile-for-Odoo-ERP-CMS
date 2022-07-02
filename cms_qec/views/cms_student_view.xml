@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <!-- Form View 1 Of Student's Profiles -->
+    <record id="view_cms_student_form_id" model="ir.ui.view">
+        <field name="name">cms.student.form</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <form string="Student Information">
+                <header>
+                    <button class="oe_stat_button" name="set_done" string="Done" type="object" icon="fa-check" states="draft" groups="cms_student.group_campus_administrator" />
+                    <button class="oe_stat_button" name="set_cancel" string="Cancel" type="object" icon="fa-check" states="draft" groups="cms_student.group_campus_administrator" />
+                    <field name="state" widget="statusbar" statusbar_visible="draft" attrs="{'invisible':[('state','=','done')]}"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Student Name" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </h1>
+                     </div>
+                     
+                     <div>
+						<group colspan="4" col="4" string="Student Information">
+							<field name="father_name" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="contact_mobile" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="registration_no" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="contact_phone" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="gender" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="admission_date" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="date_of_birth" attrs="{'readonly':[('state','!=','draft')]}"/>
+							<field name="user_id"/>
+							<field name="age"/>
+							<field name="active" attrs="{'readonly':[('state','!=','draft')]}"/>
+						</group>
+						
+						<notebook>
+							<page string="Remarks">
+								<field name="remark"/>
+							</page>
+						</notebook>
+							
+					</div>
+				</sheet>
+			</form>
+		</field>
+    </record>
+
+    <!-- Tree View of Student -->
+    <record id="view_cms_student_tree_id" model="ir.ui.view">
+        <field name="name">student.student.tree</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student Information" create="true" delete="false">
+				<field name="name"/>
+                <field name="father_name"/>
+                <field name="registration_no"/>
+				<field name="gender"/>
+				<field name="date_of_birth"/>
+				<field name="admission_date"/>
+				<field name="age"/>
+				<field name="contact_phone"/>
+				<field name="contact_mobile"/>
+				<field name="user_id"/>
+				<field name="state"/>
+				<field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Calendar View Of Student -->
+    <record id="view_cms_student_calendar_id" model="ir.ui.view">
+        <field name="name">cms.student.calendar</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <calendar color="name" date_start="admission_date" string="Gender">
+                <field name="name"/>
+                <field name="admission_date"/>
+                <field name="gender"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Search View of Student -->
+    <record id="view_cms_student_search_id" model="ir.ui.view">
+        <field name="name">cms.student.search</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <search string="Student Information">
+                <group col="10" colspan="4">
+                    <field name="name"/>
+                    <field name="father_name"/>
+                    <field name="registration_no"/>
+					<field name="gender"/>
+					<field name="date_of_birth"/>
+					<field name="admission_date"/>
+					<field name="contact_phone"/>
+					<field name="contact_mobile"/>
+					<field name="state"/>
+
+                </group>
+                <newline />
+                <group expand="0" string="Group By" colspan="12" col="10">
+                    <filter name="admission_date" string="Admission Date" help="By Admission Date" context="{'group_by':'admission_date'}" />
+                    <filter name="gender" string="Gender" help="By Gender" context="{'group_by':'gender'}" />
+                    <filter name="state" string="State" help="By State" context="{'group_by':'state'}"/>
+                </group>
+
+                <separator/>
+                <filter name="draft" string="Draft" domain="[('state','=', 'draft')]" help="Admission In Draft State"/>
+                <filter name="done" string="Done" domain="[('state','=', 'done')]" help="Admission In Done State"/>
+                <filter name="cancelled" string="Cancelled" domain="[('state','=', 'cancelled')]" help="Admission In Cancelled State"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_cms_student_id" model="ir.actions.act_window">
+        <field name="name">CMS Student</field>
+        <field name="domain">[('active','=',True)]</field>
+        <field name="res_model">cms.student</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,kanban,form,calendar</field>
+    </record>
+
+    <!-- Top Menu CMS -->
+    <menuitem id="menu_main_campus_id" name="CMS" web_icon="cms_student,static/description/icon.png" sequence="1" groups="cms_student.group_campus_administrator,cms_student.group_campus_user"/>
+    <!-- Menu Student -->
+    <menuitem id="menu_cms_student_main_id" name="CMS Student" parent="menu_main_campus_id" sequence="1" groups="cms_student.group_campus_administrator,cms_student.group_campus_user"/>
+    <menuitem id="menu_cms_student_1" name="Student" parent="menu_cms_student_main_id" action="action_cms_student_id" sequence="21" groups="cms_student.group_campus_administrator,cms_student.group_campus_user"/>
+
+    
+</odoo>

@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <record id="action_cms_qec_id" model="ir.actions.act_window">
+        <field name="name">QEC</field>
+        <field name="domain">[('active','=',True)]</field>
+        <field name="res_model">cms.qec.question.area</field>
+        <field name="binding_view_types">tree, kaban, form</field>
+        <field name="view_mode">form</field>
+    </record>
+
+
+    <menuitem id = "qec_question_root"
+    name = "questions"
+    sequence = "10"
+    parent = "qec_root"
+    action = "action_cms_qec_id"
+    />
+
+    <!-- Form View cms_qec_question_area -->
+    <record id="view_cms_qec_question_area_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.question.area.form</field>
+        <field name="model">cms.qec.question.area</field>
+        <field name="arch" type="xml">
+            <form string="QEC Question Area">
+            <field name  = "name"/>
+            <field name = "question" />
+			</form>
+		</field>
+    </record>
+
+    <!-- Tree View cms_qec_question_area -->
+    <record id="view_cms_qec_question_area_tree_id" model="ir.ui.view">
+        <field name="name">cms.qec.question.area.tree</field>
+        <field name="model">cms.qec.question.area</field>
+        <field name="arch" type="xml">
+            <tree string="QEC Question Area">
+            <field name  = "name"/>
+            <field name = "question" />
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Form View cms_qec_question -->
+    <record id="view_cms_qec_question_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.question.form</field>
+        <field name="model">cms.qec.question</field>
+        <field name="arch" type="xml">
+
+            <form string="QEC Questions">
+
+                <field name  = "name"/>
+                <field name = "Question No" />
+                <field name = "Response Type"/>
+                <field name = "Question Area"/>
+                <field name = "Options"/>
+            
+			</form>
+		</field>
+    </record>
+
+    <!-- Tree View cms_qec_question -->
+    <record id="view_cms_qec_question_tree_id" model="ir.ui.view">
+        <field name="name">cms.qec.question.tree</field>
+        <field name="model">cms.qec.question</field>
+        <field name="arch" type="xml">
+
+            <tree string="QEC Questions">
+
+                <field name  = "name"/>
+                <field name = "Question No" />
+                <field name = "Response Type"/>
+                <field name = "Question Area"/>
+                <field name = "Options"/>
+            
+			</tree>
+		</field>
+    </record>
+
+    
+    <!-- Form View cms_qec_option -->
+    <record id="view_cms_qec_option_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.option.form</field>
+        <field name="model">cms.qec.option</field>
+        <field name="arch" type="xml">
+
+            <form string="QEC Options">
+
+                <field name  = "name" />
+                <field name = "label" />
+                <field name = "Qequence" />
+                <field name = "Value" />
+                <field name = "state" />
+                <field name = "Question" />
+
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree View cms_qec_option -->
+    <record id="view_cms_qec_option_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.option.tree</field>
+        <field name="model">cms.qec.option</field>
+        <field name="arch" type="xml">
+
+            <tree string="QEC Options">
+
+                <field name  = "name" />
+                <field name = "label" />
+                <field name = "Qequence" />
+                <field name = "Value" />
+                <field name = "state" />
+                <field name = "Question" />
+
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Form View cms_qec_template -->
+    <record id="view_cms_qec_template_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.template.form</field>
+        <field name="model">cms.qec.template</field>
+        <field name="arch" type="xml">
+
+            <form string="QEC Template">
+                <field name  = "name" attrs="{'readonly':[('State','!=','Draft')]}" />
+                <field name = "Evaluation For" attrs="{'readonly':[('State','!=','Draft')]}" />
+                <field name = "Template Lines" attrs="{'readonly':[('State','!=','Draft')]}" />
+                <field name = "Template Areas" attrs="{'readonly':[('State','!=','Draft')]}" />
+            </form>
+
+        </field>
+    </record>
+
+    <!-- Tree View cms_qec_template -->
+    <record id="view_cms_qec_template_tree_id" model="ir.ui.view">
+        <field name="name">cms.qec.template.tree</field>
+        <field name="model">cms.qec.template</field>
+        <field name="arch" type="xml">
+
+            <tree string="QEC Template">
+                <field name  = "name" attrs="{'readonly':[('State','!=','Draft')]}" />
+                <field name = "Evaluation For" attrs="{'readonly':[('State','!=','Draft')]}" />
+                <field name = "Template Lines" attrs="{'readonly':[('State','!=','Draft')]}" />
+                <field name = "Template Areas" attrs="{'readonly':[('State','!=','Draft')]}" />
+            </tree>
+
+        </field>
+    </record>
+
+
+    <!-- Form View cms_qec_template_lines -->
+    <record id="view_cms_qec_template_lines_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.template.lines.form</field>
+        <field name="model">cms.qec.template.lines</field>
+        <field name="arch" type="xml">
+
+            <form string="QEC Template Lines">
+                <field name  = "name"/>
+                <field name = "QEC Template" />
+                <field name = "Serial No" />
+                <field name = "Statistical Effect " />
+                <field name = "Question Area" />
+            </form>
+            
+        </field>
+    </record>
+
+    <!-- Tree View cms_qec_template_lines -->
+    <record id="view_cms_qec_template_lines_tree_id" model="ir.ui.view">
+        <field name="name">cms.qec.template.lines.tree</field>
+        <field name="model">cms.qec.template.lines</field>
+        <field name="arch" type="xml">
+
+            <tree string="QEC Template Lines">
+                <field name  = "name"/>
+                <field name = "QEC Template" />
+                <field name = "Serial No" />
+                <field name = "Statistical Effect " />
+                <field name = "Question Area" />
+            </tree>
+            
+        </field>
+    </record>
+
+
+
+    <!-- Form View cms_qec_template_area -->
+    <record id="view_cms_qec_template_lines_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.template.area.form</field>
+        <field name="model">cms.qec.template.area</field>
+        <field name="arch" type="xml">
+
+            <form string="QEC Template Area">
+                <field name  = "name"/>
+                <field name = "QEC Template" />
+                <field name = "Serial No" />
+            </form>
+            
+        </field>
+    </record>
+
+    <!-- Tree View cms_qec_template_area -->
+    <record id="view_cms_qec_template_lines_tree_id" model="ir.ui.view">
+        <field name="name">cms.qec.template.area.tree</field>
+        <field name="model">cms.qec.template.area</field>
+        <field name="arch" type="xml">
+
+            <tree string="QEC Template Area">
+                <field name  = "name"/>
+                <field name = "QEC Template" />
+                <field name = "Serial No" />
+            </tree>
+            
+        </field>
+    </record>
+
+
+
+    <!-- Form View cms_qec_evaluation -->
+    <record id="view_cms_qec_template_lines_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.evaluation.form</field>
+        <field name="model">cms.qec.template.area</field>
+        <field name="arch" type="xml">
+
+            <form string="QEC Template Area">
+                <field name  = "name" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Evaluation For"  attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Evaluation Date"  attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Qec Template" />
+                <field name = "Evaluation Feedback" attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+                <field name = "Closed by" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Closed date" attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+                <field name = "Started by" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Started Date" attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+                <field name = "Cancelled by" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Cancelled Date " attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+            </form>
+            
+        </field>
+    </record>
+
+     <!-- Tree View cms_qec_evaluation -->
+     <record id="view_cms_qec_template_lines_tree_id" model="ir.ui.view">
+        <field name="name">cms.qec.evaluation.tree</field>
+        <field name="model">cms.qec.template.area</field>
+        <field name="arch" type="xml">
+
+            <tree string="QEC Template Area">
+                <field name  = "name" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Evaluation For"  attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Evaluation Date"  attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Qec Template" />
+                <field name = "Evaluation Feedback" attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+                <field name = "Closed by" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Closed date" attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+                <field name = "Started by" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Started Date" attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+                <field name = "Cancelled by" attrs="{'readonly':[('State','!=','Draft')]}"/>
+                <field name = "Cancelled Date " attrs="{'readonly':[('State','!=','Draft')]}"/>
+
+            </tree>
+            
+        </field>
+    </record>
+
+    
+
+    <!-- Form View cms_qec_evaluation_feedbacck_lines -->
+    <record id="view_cms_qec_evaluation_feedback_form_id" model="ir.ui.view">
+        <field name="name">cms.qec.evaluation.feedbacck.lines.form</field>
+        <field name="model">cms.qec.evaluation.feedbacck.lines</field>
+        <field name="arch" type="xml">
+
+            <form string="QEC Evaluation Lines">
+                <field name  = "Name"/>
+                <field name = "Question" />
+                <field name = "Text" />
+                <field name = "Serial No" />
+                <field name = "Sequence No" />
+                <field name = "Readonly State" />
+                <field name = "Is Valid" />
+            </form>
+            
+        </field>
+    </record>
+
+    <!-- Tree View cms_qec_evaluation_feedbacck_lines -->
+    <record id="view_cms_qec_evaluation_feedback_tree_id" model="ir.ui.view">
+        <field name="name">cms.qec.evaluation.feedbacck.lines.tree</field>
+        <field name="model">cms.qec.evaluation.feedbacck.lines</field>
+        <field name="arch" type="xml">
+
+            <tree string="QEC Evaluation Lines">
+                <field name  = "Name"/>
+                <field name = "Question" />
+                <field name = "Text" />
+                <field name = "Serial No" />
+                <field name = "Sequence No" />
+                <field name = "Readonly State" />
+                <field name = "Is Valid" />
+            </tree>
+            
+        </field>
+    </record>
+
+        
+
+
+
+
+
+ </odoo>
